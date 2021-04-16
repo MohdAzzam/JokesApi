@@ -89,7 +89,22 @@ app.delete('/delete/:id',(req,res)=>{
         res.redirect('/myFav');
     }).catch(err=>console.log('ERR while delete'))
 })
-
+app.get('/jokes',(req,res)=>{
+    res.render('pages/addJokes');
+})
+app.post('/addJokes',(req,res)=>{
+    console.log(req.body);
+    const type = req.body.type;
+    const setup = req.body.setup;
+    const punchline = req.body.punchline;
+    const data=[type,setup,punchline];
+    let sql = 'INSERT INTO jokes (type,setup,punchline) VALUES ($1,$2,$3)';
+    client.query(sql,data).then(()=>{
+        console.log('done');
+    }).catch(err=>console.log('ERROR while insert'));
+    res.redirect('/');
+    
+})
 // connection to Db and server
 
 client.connect().then(() => {
