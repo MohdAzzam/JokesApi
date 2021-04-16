@@ -15,34 +15,27 @@
 
 <body>
     <main class="container">
-        <div class="row text-center">
-            <a href="jokes"class="btn btn-success mb-4">add Jokes</a>
-            <a href="myFav" class="btn btn-success ">My Fav</a>
-
-        </div>
-
+        <a href="/myFav" class="btn btn-primary">Back to Fav</a>
+        <a href="/" class="btn btn-primary">Home</a>
         <div class="row mt-5">
             <div class="col-12">
-                <% jokes.forEach(res=>{%>
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <h5 class="card-title">Jokes Type : <%=res.type%></h5>
-                            <p class="card-text" name='setup'>
-                                <%=res.setup%>
-                            </p>
-                            <p class="card-text" name='punchline'>
-                                <%=res.punchline%>
-                            </p>
-                            
-                            <form action="/fav" method="post">
-                                <input type="text" name="type" hidden value=" <%=res.type%>">
-                                <input type="text" name="setup" hidden value="<%=res.setup%>">
-                                <input type="text" name="punchline" hidden value="<%=res.punchline%>">
-                               <input type="submit" name="submit" class="btn btn-primary" value="add To Fav">
-                            </form>
-                        </div>
+                <form method="post" action="/addJokes">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Jokes Type</label>
+                        <input type="text" class="form-control" name="type" >
+
                     </div>
-                    <%})%>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Setup</label>
+                        <input type="text" class="form-control" name="setup">
+                    </div>
+                    <div class="form-group">
+                        <label>Punchline</label>
+                        <input type="text" class="form-control" name="punchline">
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                </form>
+              
             </div>
 
         </div>
